@@ -1,0 +1,14 @@
+mode: set
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:36.39,40.2 1 1
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:42.79,45.16 3 1
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:45.16,48.3 2 1
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:50.2,50.21 1 1
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:53.103,55.16 2 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:55.16,57.3 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:59.2,59.17 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:62.71,63.55 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:63.55,65.3 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:66.2,66.12 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:69.86,71.16 2 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:71.16,73.3 1 0
+github.com/kylehodgetts/go-rest-api-v2/internal/comment/comment.go:74.2,74.17 1 0

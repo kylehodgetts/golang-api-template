@@ -1,0 +1,50 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  build:
+    cmds:
+      - go build -o app cmd/server/main.go
+  test:
+    cmds:
+      - go test -v ./...
+  test-coverage:
+    cmds:
+      - go test -v -coverprofile=coverage.out ./...
+      - go tool cover -html=coverage.out -o coverage.html
+      - open coverage.html
+  lint:
+    cmds:
+      - golangci-lint run
+  run:
+    cmds:
+      - docker-compose up --build
+  
+  integration-test:
+    cmds:
+      - docker-compose up -d db
+      - go test -tags=integration -v ./...
+      - docker-compose down
+    env:
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_TABLE: postgres
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_DB: postgres
+      SSL_MODE: disable
+      
+  acceptance-tests:
+      cmds:
+          - docker-compose up -d --build
+          - go test -tags=e2e -v ./...
+          - docker-compose down
+  postman:
+    cmds:
+      - docker-compose up -d --build
+      - docker run -v ./postman:/etc/newman --network go-rest-api-v2_fullstack -t postman/newman:5-alpine run "Comments API.postman_collection.json" --environment="Comments API Development.postman_environment.json" --reporters cli
+      - docker-compose down

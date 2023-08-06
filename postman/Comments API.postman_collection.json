@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "bd8b79f5-7d80-442c-b0cf-120e1b2a231a",
+		"name": "Comments API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3002094"
+	},
+	"item": [
+		{
+			"name": "Create Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json()",
+							"pm.environment.set(\"id\", jsonResponse[\"ID\"])",
+							"",
+							"pm.test(\"Status code should be 201\", () => {",
+							"    pm.response.to.have.status(201)",
+							"})",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\")",
+							"    const contentType = pm.response.headers.get(\"Content-Type\")",
+							"    pm.expect(contentType).to.contain(\"application/json\")",
+							"});",
+							"",
+							"pm.test(\"Response should be populated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Slug).to.eql(\"some_slug\");",
+							"    pm.expect(jsonData.Body).to.eql(\"some body\");",
+							"    pm.expect(jsonData.Author).to.eql(\"Kyle Hodgetts\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Slug\": \"some_slug\",\n    \"Body\": \"some body\",\n    \"author\": \"Kyle Hodgetts\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/api/v1/comment",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", () => {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\")",
+							"    const contentType = pm.response.headers.get(\"Content-Type\")",
+							"    pm.expect(contentType).to.contain(\"application/json\")",
+							"});",
+							"",
+							"pm.test(\"Response should be populated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Slug).to.eql(\"some_slug\");",
+							"    pm.expect(jsonData.Body).to.eql(\"some body\");",
+							"    pm.expect(jsonData.Author).to.eql(\"Kyle Hodgetts\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/api/v1/comment/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"comment",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 201\", () => {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\")",
+							"    const contentType = pm.response.headers.get(\"Content-Type\")",
+							"    pm.expect(contentType).to.contain(\"application/json\")",
+							"});",
+							"",
+							"pm.test(\"Response should be populated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.Slug).to.eql(\"some_slug\");",
+							"    pm.expect(jsonData.Body).to.eql(\"some body\");",
+							"    pm.expect(jsonData.Author).to.eql(\"Kyle Hodgetts\")",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Slug\": \"some_slug\",\n    \"Body\": \"some body\",\n    \"author\": \"Kyle Hodgetts\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/api/v1/comment/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"comment",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"id\", undefined)",
+							"",
+							"pm.test(\"Status code should be 204\", () => {",
+							"    pm.response.to.have.status(204)",
+							"})",
+							"",
+							"pm.test(\"Content-Type is application/json\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\")",
+							"    const contentType = pm.response.headers.get(\"Content-Type\")",
+							"    pm.expect(contentType).to.contain(\"application/json\")",
+							"});",
+							"",
+							"pm.test(\"Response should be empty\", function () {",
+							"    pm.expect(pm.response.text()).to.be.empty",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{bearer_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/api/v1/comment/{{id}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"comment",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": " bearer_token ",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.EMoqWwaeXLeZ07ldb5a5MWAKjmIQF9ts7XA3dsAFKG"
+		},
+		{
+			"key": " bearer_token ",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
